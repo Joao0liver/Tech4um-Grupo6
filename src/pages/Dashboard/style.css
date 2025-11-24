@@ -4,7 +4,9 @@
     justify-content: center;
     flex-direction: column;
     padding-top: 60px;
-    margin-left: 200px;
+    padding-left: 200px;  /* ← substitui o margin-left */
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .Dash-form {
@@ -74,6 +76,31 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+}
+.Dash-usuario {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;        
+}
+
+
+.Dash-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+}
+
+.Dash-perfil {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
 }
 .Card{
     width: 220px;
