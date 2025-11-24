@@ -1,0 +1,84 @@
+.Home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100vh;        
+    padding: 20px;
+    background: #f7f7f7;     
+}
+
+
+.Home-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    padding: 25px 30px;
+    border-radius: 15px;
+    background-color: white;
+
+    width: 100%;
+    max-width: 400px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.Home-titulo {
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+
+.Home-names,
+.Home-emails,
+.Home-senhas,
+.Home-avatar {
+    color: #555;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: -5px;
+}
+
+.Home-form input {
+    border: 1px solid #48456C;
+    color: black;
+    border-radius: 10px;
+    height: 40px;
+    font-size: 15px;
+    padding-left: 10px;
+    outline: none;
+    background-color: white;
+}
+
+.Home-form input[type="file"] {
+    padding: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.Home-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.Home-form button {
+    border-radius: 20px;
+    background-color: rgb(12, 59, 212);
+    color: white;
+    height: 35px;
+    width: 120px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Home-form button:hover {
+    opacity: 0.85;
+}
