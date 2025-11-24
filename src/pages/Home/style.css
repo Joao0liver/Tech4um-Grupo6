@@ -20,6 +20,10 @@
     color:gray;
     font-size:10px;
 }
+.Home-senhas{
+    color:gray;
+    font-size:10px;
+}
 .Home-form{
     display:flex;
     flex-direction: column;
