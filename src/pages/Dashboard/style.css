@@ -4,7 +4,7 @@
     justify-content: center;
     flex-direction: column;
     padding-top: 60px;
-    padding-left: 200px;  /* ← substitui o margin-left */
+    padding-left: 200px;
     box-sizing: border-box;
     overflow-x: hidden;
 }
@@ -102,6 +102,19 @@
     color: #000;
     margin: 0;
 }
+.MenuPerfil {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 100;
+  cursor: pointer;
+}
+
 .Card{
     width: 220px;
     padding: 15px;
