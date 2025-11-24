@@ -1,0 +1,90 @@
+.Dash-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 60px;
+    margin-left: 200px;
+}
+
+.Dash-form {
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Dash-logo1 {
+    font-size: 15px;
+    font-weight: 700;
+    color:black;
+    margin: 0;
+    margin-left: 12px;
+    line-height: 10px;
+}
+.Dash-logo2{
+    font-size: 20px;
+    font-weight: 700;
+    color:blue;
+    margin: 0;
+    line-height:1px;
+}
+
+.Dash-logo span {
+    display: block;
+}
+
+.Dash-inicio {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+}
+
+.Dash-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: px;
+}
+
+.Dash-row input[name="Dash-busca"] {
+    width: 500px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 6px;
+    height: 40px;
+    border: 1px solid #ccc;
+    line-height:5px;
+}
+
+.Dash-row button {
+    padding: 7px 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    background: #0066ff;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.Dash-botao2{
+    margin-left: 10px;
+}
+.Card-container{
+    width: 900px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.Card{
+    width: 220px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;                
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);   
+    cursor: pointer;
+    transition: 0.2s;
+}
+.Card-title{
+    color: rgb(8, 145, 145);
+}
