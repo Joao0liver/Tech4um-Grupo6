@@ -22,36 +22,17 @@ function Cadastro({ users, setUsers }) {
         ler.readAsDataURL(file);
     }
 
-    function CriarConta() {
+    async function CriarConta() {
 
-        if (!nome || !email || !senha) {
-            alert("Preencha todos os campos!");
-            return;
-        }
+        const resposta = await fetch("http://localhost:3001/api/usuario-cadastro", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome, email, senha })
+        });
 
-        const existe_email = users.find((user) => user.email === email);
-        if (existe_email) {
-            alert("Email já utilizado!");
-            return;
-        }
+        const dados = await resposta.json();
 
-        const existe_nome = users.find((user) => user.nome === nome);
-        if (existe_nome) {
-            alert("Nome já utilizado!");
-            return;
-        }
-
-        const novoUsuario = {
-            id: users.length + 1,
-            nome,
-            email,
-            senha,
-            avatar,
-        };
-
-        setUsers([...users, novoUsuario]);
-
-        alert("Conta criada com sucesso!");
+        alert(dados.mensagem);
         navigate('/');
     }
 

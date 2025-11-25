@@ -13,6 +13,13 @@ function Dashboard() {
             navigate("/");
         }
     })
+
+    function logout() {
+        localStorage.removeItem("usuario");
+        localStorage.clear;
+
+        navigate("/");
+    }
     
     function Menu(){
         
@@ -21,9 +28,7 @@ function Dashboard() {
                 <p>Perfil</p>
                 <p>Configurações</p>
                 <p>Foruns</p>
-                <p onClick={() => {
-                    navigate('/');
-                }}>Sair</p>
+                <p onClick={logout}>Sair</p>
             </div>
         );
     }
