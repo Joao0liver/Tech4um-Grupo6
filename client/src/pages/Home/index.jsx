@@ -9,16 +9,19 @@ function Home({ users }) {
     const [email, SetEmail] = useState("");
     const [senha, SetSenha] = useState("");
 
-    function Validar() {
-        const existe = users.find(
-            user => user.nome === nome && user.email === email && user.senha == senha
-        );
-        
-        localStorage.setItem("usuario", JSON.stringify(existe));
-        if (existe) {
-            navigate('/Dashboard');
+    async function Validar() {
+        const resposta = await fetch("http://localhost:3001/api/usuario-login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome, email, senha })
+        });
+
+        const dados = await resposta.json();
+        if (dados.sucesso) {
+            localStorage.setItem("usuario", JSON.stringify(dados.usuario));
+            navigate("/Dashboard");
         } else {
-            alert("Usuário inválido!");
+            alert(dados.mensagem);
         }
     }
 

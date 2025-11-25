@@ -1,7 +1,25 @@
-const app = require('express')()
-const server = require('http').createServer(app)
-const io = require('socket.io')(server, {cors: {origin: 'http//localhost:5173'}})
+const app = require('express')(); // Importa e inicializa o app Express
+const bodyParser = require('body-parser');
+const http = require('http');
+const cors = require('cors');
 
+// Importa os Controllers e Models
+const UsuarioController = require('./controller/UsuarioController.js');
+const UsuarioModel = require('./model/UsuarioModel.js');
+
+app.use(bodyParser.json());
+app.use(cors({
+    origin: 'http://localhost:5173'
+}));
+
+UsuarioModel.criarTabela();
+
+// Rotas da API
+app.post('/api/usuario-cadastro', UsuarioController.cadastrar);
+app.post('/api/usuario-login', UsuarioController.login);
+
+const server = http.createServer(app);
 const PORT = 3001
+const io = require('socket.io')(server, {cors: {origin: 'http//localhost:5173'}}); // Cors indica que o Socket só recebe requisição do client React
 
-server.listen(PORT, () => console.log('Server running...'))
+server.listen(PORT, () => console.log('Backend rodando em http://localhost:3001'))
