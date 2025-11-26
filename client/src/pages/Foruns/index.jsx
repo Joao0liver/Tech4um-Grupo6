@@ -14,7 +14,21 @@ function Foruns() {
             navigate("/");
         }
     })
-    
+
+    function Criar_Forum(){
+        if (!nomeForum){
+            alert("Seu forum está sem nome!");
+            return;
+        }
+        const novoForum = {
+            nome: nomeForum,
+            descricao: descricaoForum,
+            avatar: avatarForum,
+        }
+        navigate('/Dashboard')
+
+    }
+
     function LerAvatar(e) {
         const file = e.target.files[0];
         if (!file) return;
@@ -49,10 +63,12 @@ function Foruns() {
                     {MenuPerfil && Menu()} 
                 </div>
                 <p className='Forum-nome'>Nome do forum:</p>
-                <input type='text'/>
+                <input type='text' onChange={(e)=> setNomeForum(e.target.value)}/>
+                <p className='Forum-descricao'>Descrição do forum:</p>
+                <input type='text' onChange={(e)=> setDescricaoForum(e.target.value)}/>
                 <p className="Forum-avatar">Adicione a imagem do seu forum:</p>
                 <input type="file" accept="image/*" onChange={LerAvatar} />
-                <button className='Forum-criar' type='button'>Criar</button>
+                <button className='Forum-criar' type='button' onClick={(Criar_Forum)}>Criar</button>
             </form>
         </div>
     )
