@@ -3,8 +3,8 @@ const UsuarioModel = require('../model/UsuarioModel.js');
 class UsuarioController {
 
     static async cadastrar(req, res) {
-        const { nome, email, senha } = req.body;
-        await UsuarioModel.inserirUsuario(nome, email, senha);
+        const { nome, email, senha, avatar } = req.body;
+        await UsuarioModel.inserirUsuario(nome, email, senha, avatar);
         res.json({ mensagem: "Usuário cadastrado com sucesso!"});
     }
 

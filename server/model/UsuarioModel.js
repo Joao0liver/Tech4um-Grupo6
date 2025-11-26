@@ -9,17 +9,19 @@ class UsuarioModel {
             idUser INTEGER PRIMARY KEY, 
             nome TEXT, 
             email TEXT, 
-            senha TEXT
+            senha TEXT,
+            avatar TEXT
             )`
         );
     }
 
-    static async inserirUsuario(nome, email, senha) {
+    static async inserirUsuario(nome, email, senha, avatar) {
         const db = await conexao();
-        db.run(`INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)`, [
+        db.run(`INSERT INTO usuarios (nome, email, senha, avatar) VALUES (?, ?, ?, ?)`, [
             nome,
             email,
-            senha
+            senha,
+            avatar
         ]);
     }
 
