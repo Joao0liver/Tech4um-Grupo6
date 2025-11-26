@@ -23,12 +23,12 @@ class ForumModel {
 
     static async listarForuns() {
        const db = await conexao();
-       db.get(`SELECT * FROM foruns`);
+       return db.all(`SELECT * FROM foruns`);
     }
 
     static async buscarForum(nome) {
         const db = await conexao();
-        db.get(`SELECT * FROM foruns WHERE nome=?`, [
+        return db.get(`SELECT * FROM foruns WHERE nome=?`, [
             nome
         ]);
     }
