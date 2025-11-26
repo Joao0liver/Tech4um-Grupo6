@@ -22,6 +22,8 @@ app.post('/api/forum-cadastro', ForumController.cadastrar);
 app.get('/api/foruns', ForumController.listar);
 app.get('/api/foruns/:nome', ForumController.buscar);
 
+
+// Configurações de Server e Socket.io
 const server = http.createServer(app);
 const PORT = 3001
 const io = require('socket.io')(server, {cors: {origin: 'http//localhost:5173'}}); // Cors indica que o Socket só recebe requisição do client React

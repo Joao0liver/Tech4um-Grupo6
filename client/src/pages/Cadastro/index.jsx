@@ -27,7 +27,7 @@ function Cadastro({ users, setUsers }) {
         const resposta = await fetch("http://localhost:3001/api/usuario-cadastro", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nome, email, senha })
+            body: JSON.stringify({ nome, email, senha, avatar })
         });
 
         const dados = await resposta.json();
