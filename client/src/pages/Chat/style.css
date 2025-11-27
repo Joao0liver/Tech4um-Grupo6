@@ -1,0 +1,377 @@
+.Chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e9e9e9;
+}
+
+.Chat-form {
+    position: relative;
+    width: 600px;
+    height: 90vh;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.Chat-lateral {
+    position: absolute;
+    left: -250px; 
+    top: 0;
+    width: 220px;
+    height: 100%;
+    background-color: whitesmoke;
+    color: white;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Chat-membros {
+    font-size: 18px;
+    color:black;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.Chat-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.Chat-lista li {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.Chat-lista li:hover {
+    background-color: rgb(186, 240, 237);
+}
+
+.Chat-participantes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.Chat-item span {
+    font-size: 16px;
+}
+
+.Chat-avatar-membro {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.Chat-foruns-lateral {
+    position: fixed;
+    left: 980px; 
+    margin-top: 50px;
+    width: 220px;
+    height: 100%;
+    color: black;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: row;
+}
+.Chat-avatar-forum {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.Chat-aba-foruns {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.Chat-titulo {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+
+.Chat-input {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.Chat-input input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.Chat-enviar {
+    padding: 12px 20px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.Chat-enviar:hover {
+    background-color: #3a78c3;
+}
+.Chat-usuario {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.Chat-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.MenuPerfil {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.Chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e9e9e9;
+}
+
+.Chat-form {
+    position: relative;
+    width: 600px;
+    height: 90vh;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.Chat-lateral {
+    position: absolute;
+    left: -250px; 
+    top: 0;
+    width: 220px;
+    height: 100%;
+    background-color: whitesmoke;
+    color: white;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Chat-membros {
+    font-size: 18px;
+    color:black;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.Chat-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.Chat-lista li {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.Chat-lista li:hover {
+    background-color: rgb(186, 240, 237);
+}
+
+.Chat-participantes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.Chat-item span {
+    font-size: 16px;
+}
+
+.Chat-avatar-membro {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.Chat-foruns-lateral {
+    position: fixed;
+    left: 980px; 
+    margin-top: 50px;
+    width: 220px;
+    height: 100%;
+    color: black;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: row;
+}
+.Chat-avatar-forum {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.Chat-aba-foruns {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.Chat-titulo {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+
+.Chat-input {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.Chat-input input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.Chat-enviar {
+    padding: 12px 20px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.Chat-enviar:hover {
+    background-color: #3a78c3;
+}
+.Chat-usuario {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.Chat-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.MenuPerfil {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.Chat-avatar-mensagem {
+    width: 25px;  
+    height: 25px;  
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Chat-usuario-mensagem {
+    font-weight: bold;
+    left: 100px;
+    margin: 0;
+    font-size: 12px; 
+}
+.Chat-mensagens {
+    width: 100%; 
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding-right: 10px;
+}
+
+.Chat-mensagem {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    justify-content: flex-start; 
+}
+
