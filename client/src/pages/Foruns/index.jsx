@@ -31,18 +31,7 @@ function Foruns() {
             alert("Erro ao criar Fórum...");
         }
     }
-
-    function LerAvatar(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        const ler = new FileReader();
-        ler.onload = () => {
-            SetAvatarForum(ler.result);
-        };
-
-        ler.readAsDataURL(file);
-    }
+    
     function Menu() {
         return (
             <div className="MenuPerfil">

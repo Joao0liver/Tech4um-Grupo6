@@ -66,10 +66,10 @@ function Dashboard() {
             
             <div className='Card-container'>
                 {foruns.map(forum=>(
-                    <div key={ forum.idForum } className='Card' onClick={() => navigate(`/Chat/${forum.idForum}`)}>
+                    <div key={ forum.idForum } className='Card'>
                         <h3 className='Card-title'>{forum.nome}</h3>
                         <p>{forum.descricao}</p>
-                        <button>Inscrever-se</button>
+                        <button type='button' className='Dash-botao3' onClick={() => navigate(`/Chat/${forum.idForum}`)}>Inscrever-se</button>
                     </div>
                 ))}
             </div>
