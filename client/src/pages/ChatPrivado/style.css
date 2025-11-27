@@ -138,11 +138,10 @@
 }
 
 .Chat-avatar {
-    width: 70px;
-    height: 70px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #4a90e2;
 }
 
 .ChatPrivado-foruns-lateral {
@@ -171,7 +170,6 @@
     background: #ffffff;
     border-radius: 10px;
     margin-bottom: 10px;
-    cursor: pointer;
 }
 
 .ChatPrivado-avatar-forum {
