@@ -6,27 +6,30 @@ function Foruns() {
     const navigate = useNavigate()
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     const [MenuPerfil, setMenuPerfil ] = useState (false);
-    const [nomeForum, setNomeForum] = useState("");
-    const [descricaoForum, setDescricaoForum] = useState("");
-    const [avatarForum, SetAvatarForum] = useState("");
+    const [nome, setNome] = useState("");
+    const [descricao, setDescricao] = useState("");
+
     useEffect(() => {
         if (!usuario) {
             navigate("/");
         }
     })
 
-    function Criar_Forum(){
-        if (!nomeForum){
-            alert("Seu forum está sem nome!");
-            return;
-        }
-        const novoForum = {
-            nome: nomeForum,
-            descricao: descricaoForum,
-            avatar: avatarForum,
-        }
-        navigate('/Dashboard')
+    async function criarForum(){
+        try {
+            const resposta = await fetch("http://localhost:3001/api/forum-cadastro", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, descricao })
+            });
 
+            const dados = await resposta.json();
+
+            alert(dados.mensagem);
+            navigate('/Dashboard')
+        } catch {
+            alert("Erro ao criar Fórum...");
+        }
     }
 
     function LerAvatar(e) {
@@ -63,12 +66,10 @@ function Foruns() {
                     {MenuPerfil && Menu()} 
                 </div>
                 <p className='Forum-nome'>Nome do forum:</p>
-                <input type='text' onChange={(e)=> setNomeForum(e.target.value)}/>
+                <input type='text' onChange={(e)=> setNome(e.target.value)}/>
                 <p className='Forum-descricao'>Descrição do forum:</p>
-                <input type='text' onChange={(e)=> setDescricaoForum(e.target.value)}/>
-                <p className="Forum-avatar">Adicione a imagem do seu forum:</p>
-                <input type="file" accept="image/*" onChange={LerAvatar} />
-                <button className='Forum-criar' type='button' onClick={(Criar_Forum)}>Criar</button>
+                <input type='text' onChange={(e)=> setDescricao(e.target.value)}/>
+                <button className='Forum-criar' type='button' onClick={(criarForum)}>Criar</button>
             </form>
         </div>
     )

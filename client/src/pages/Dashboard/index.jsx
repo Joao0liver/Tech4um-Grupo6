@@ -28,22 +28,6 @@ function Dashboard() {
         carregarForuns();
     },  [usuario, navigate]);
 
-    async function criarForum() {
-        try {
-            const resposta = await fetch("http://localhost:3001/api/forum-cadastro", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nome, descricao })
-            });
-
-            const dados = await resposta.json();
-
-            alert(dados.mensagem);
-        } catch {
-            alert("Erro ao criar Fórum...");
-        }
-    }
-
     function logout() {
         localStorage.removeItem("usuario");
         localStorage.clear;
@@ -85,6 +69,7 @@ function Dashboard() {
                     <div key={ forum.idForum } className='Card' onClick={() => navigate(`/Chat/${forum.idForum}`)}>
                         <h3 className='Card-title'>{forum.nome}</h3>
                         <p>{forum.descricao}</p>
+                        <button>Inscrever-se</button>
                     </div>
                 ))}
             </div>
