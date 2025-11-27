@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro";
 import Dashboard from "./pages/Dashboard";
 import Chat from "./pages/Chat";
+import Foruns from "./pages/Foruns";
 
 function App() {
   // Estado global de usuários
@@ -16,6 +17,7 @@ function App() {
       <Route path="/Cadastro" element={<Cadastro users={users} setUsers={setUsers} />} />
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/Chat" element={<Chat />} />
+      <Route path="/Foruns" element={<Foruns/>}/>
     </Routes>
   );
 }
