@@ -1,0 +1,182 @@
+.ChatPrivado-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-color: #e9e9e9;
+}
+
+.ChatPrivado-form {
+    position: relative;
+    width: 600px;
+    height: 90vh;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ChatPrivado-titulo {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.ChatPrivado-nome {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.ChatPrivado-mensagens {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding-right: 10px;
+}
+
+.ChatPrivado-mensagem {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.ChatPrivado-avatar-mensagem {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ChatPrivado-usuario-mensagem {
+    font-weight: bold;
+    margin: 0;
+    font-size: 12px;
+}
+
+.ChatPrivado-texto {
+    margin: 0;
+    font-size: 14px;
+}
+
+.ChatPrivado-input {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.ChatPrivado-input input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.ChatPrivado-enviar {
+    padding: 12px 20px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.ChatPrivado-enviar:hover {
+    background-color: #3a78c3;
+}
+
+.ChatPrivado-usuario {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ChatPrivado-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.MenuPerfil {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: #222;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.Chatprivado-perfil {
+    position: fixed;
+    left: 25px;
+    top: 110px;
+    width: 170px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.Chat-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4a90e2;
+}
+
+.ChatPrivado-foruns-lateral {
+    position: fixed;
+    right: 20px;
+    top: 80px;
+    width: 220px;
+    height: 100%;
+    color: black;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.ChatPrivado-foruns-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ChatPrivado-aba-foruns {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.ChatPrivado-avatar-forum {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
