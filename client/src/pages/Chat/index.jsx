@@ -8,13 +8,14 @@ function Chat() {
     const navigate = useNavigate();
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     const [MenuPerfil, setMenuPerfil] = useState(false);
+    const [mostrarParticipantes, setMostrarParticipantes] = useState(false);
 
-    // Estado para mensagens
+
     const [mensagens, setMensagens] = useState([]);
     const [novaMensagem, setNovaMensagem] = useState("");
 
     useEffect(() => {
-        if(!usuario){
+        if (!usuario) {
             navigate("/");
         }
 
@@ -30,7 +31,7 @@ function Chat() {
         }
 
         carregarForuns();
-    },  [usuario, navigate]);
+    }, [usuario, navigate]);
 
     const [participantes] = useState([
         { id: 1, nome: "João", avatar: "https://i.pravatar.cc/40?u=joao" },
@@ -67,8 +68,23 @@ function Chat() {
             </div>
         );
     }
+    function MenuParticipantes() {
+        return (
+            <div className="MenuMembros">
+                <ul className='Chat-lista'>
+                    {participantes.map(membro => (
+                        <li key={membro.id} className='Chat-participantes' onClick={() => navigate(`/ChatPrivado/${membro.nome}`)}>
+                            <img src={membro.avatar} alt={membro.nome} className="Chat-avatar-membro" />
+                            <p className='Chat-nome-membro'>{membro.nome}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    }
 
-    // Função para enviar mensagem
+
+
     function enviarMensagem() {
         if (novaMensagem.trim() === "") return;
 
@@ -87,21 +103,13 @@ function Chat() {
         <div className='Chat-container'>
             <form className='Chat-form' onSubmit={(e) => e.preventDefault()}>
                 <div className="Chat-lateral">
-                    <h1 className='Chat-membros'>Participantes</h1>
-                    <ul className='Chat-lista'>
-                        {participantes.map(membro => (
-                            <li key={membro.id} className='Chat-participantes'>
-                                <img src={membro.avatar} alt={membro.nome} className="Chat-avatar-membro" />
-                                <p className='Chat-nome-membro'>{membro.nome}</p>
-                            </li>
-                        ))}
-                    </ul>
+                    <h1 className='Chat-membros' onClick={() => setMostrarParticipantes(!mostrarParticipantes)}>Participantes</h1>
+                    {mostrarParticipantes && <MenuParticipantes />}
                 </div>
 
                 <h1 className='Chat-titulo'>Chat online</h1>
                 <h1 className='Chat-nome'>{salaAtual ? salaAtual.nome : "Sala não encontrada"}</h1>
 
-                {/* Aqui exibimos as mensagens */}
                 <div className='Chat-mensagens'>
                     {mensagens.map(msg => (
                         <div key={msg.id} className='Chat-mensagem'>
@@ -115,15 +123,24 @@ function Chat() {
                 </div>
 
                 <div className='Chat-input'>
-                    <input 
-                        type='text' 
-                        placeholder='Digite sua mensagem...' 
+                    <input
+
+                        type='text'
+                        placeholder='Digite sua mensagem...'
                         value={novaMensagem}
                         onChange={(e) => setNovaMensagem(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                e.preventDefault(); 
+                                enviarMensagem();
+                            }
+                        }}
+
+
                     />
-                    <button 
-                        className='Chat-enviar' 
-                        type="button" 
+                    <button
+                        className='Chat-enviar'
+                        type="button"
                         onClick={enviarMensagem}>
                         Enviar →
                     </button>
