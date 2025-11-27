@@ -29,7 +29,7 @@ function Dashboard() {
     },  [usuario, navigate]);
 
     async function inscreverForum(idForum) {
-        const resposta = await fetch("http://localhost:3001/api/inscrever", {
+        const resposta = await fetch("http://localhost:3001/api/inscrever-forum", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ idForum, idUser: usuario.idUser })
@@ -80,7 +80,7 @@ function Dashboard() {
                     <div key={ forum.idForum } className='Card'>
                         <h3 className='Card-title'>{forum.nome}</h3>
                         <p>{forum.descricao}</p>
-                        <button type='button' className='Dash-botao3' onClick={() => inscreverForum(forum.idForum) }>Inscrever-se</button>
+                        <button type='button' className='Dash-botao3' onClick={() => inscreverForum(forum.idForum)}>Inscrever-se</button>
                     </div>
                 ))}
             </div>

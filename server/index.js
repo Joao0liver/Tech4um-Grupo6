@@ -18,8 +18,9 @@ ForumModel.criarTabela();
 // Rotas da API
 app.post('/api/usuario-cadastro', UsuarioController.cadastrar);
 app.post('/api/usuario-login', UsuarioController.login);
-app.put('/api/inscrever', UsuarioController.inscrever);
-app.put('/api/desinscrever', UsuarioController.desinscrever);
+app.put('/api/inscrever-forum', UsuarioController.inscrever);
+app.put('/api/desinscrever-forum', UsuarioController.desinscrever);
+app.get('api/verificar-forum', UsuarioController.verificarForum);
 
 app.post('/api/forum-cadastro', ForumController.cadastrar);
 app.get('/api/foruns', ForumController.listar);

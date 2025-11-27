@@ -54,6 +54,13 @@ class UsuarioModel {
         ]);
     }
 
+    static async verificarForum(idUser) {
+        const db = await conexao();
+        await db.run(`SELECT idForum FROM usuarios WHERE idUser=?`, [
+            idUser
+        ]);
+    }
+
 }
 
 module.exports = UsuarioModel;

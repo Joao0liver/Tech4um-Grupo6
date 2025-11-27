@@ -31,6 +31,17 @@ class UsuarioController {
         res.json({ mensagem: "Desinscreveu-se do Fórum com sucesso!" });
     }
 
+    static async verificarForum(req, res) {
+        const { idUser } = req.body;
+        const forum = await UsuarioModel.verificarForum(idUser);
+
+        if (forum) {
+            res.json({ sucesso: true });
+        } else {
+            res.json({ sucesso: false });
+        }
+    }
+
 }
 
 module.exports = UsuarioController;
