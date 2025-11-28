@@ -31,7 +31,7 @@ class RegistroModel {
 
     static async verificarRegistros(idUser) {
         const db = await conexao();
-        return db.run(`SELECT idForum FROM registro WHERE idUser=?`, [
+        return db.get(`SELECT idForum FROM registro WHERE idUser=?`, [
             idUser
         ]);
     }

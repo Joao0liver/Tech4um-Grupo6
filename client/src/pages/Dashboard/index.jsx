@@ -29,8 +29,8 @@ function Dashboard() {
     },  [usuario, navigate]);
 
     async function inscreverForum(idForum) {
-        const resposta = await fetch("http://localhost:3001/api/inscrever-forum", {
-            method: "PUT",
+        const resposta = await fetch("http://localhost:3001/api/entrar-forum", {
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ idForum, idUser: usuario.idUser })
         });

@@ -16,6 +16,7 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 
 UsuarioModel.criarTabela();
 ForumModel.criarTabela();
+RegistroModel.criarTabela();
 
 // Rotas da API
 app.post('/api/usuario-cadastro', UsuarioController.cadastrar);
@@ -33,6 +34,6 @@ app.get('/api/inscricoes', RegistroController.forunsIncritos);
 // Configurações de Server e Socket.io
 const server = http.createServer(app);
 const PORT = 3001
-const io = require('socket.io')(server, {cors: {origin: 'http//localhost:5173'}}); // Cors indica que o Socket só recebe requisição do client React
+const io = require('socket.io')(server, { cors: { origin: 'http://localhost:5173' } }); // Cors indica que o Socket só recebe requisição do client React
 
 server.listen(PORT, () => console.log('Backend rodando em http://localhost:3001'))

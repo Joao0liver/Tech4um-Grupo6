@@ -1,4 +1,3 @@
-import { Navigate } from 'react-router-dom';
 import './style.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -13,42 +12,34 @@ function Chat() {
     const [mensagens, setMensagens] = useState([]);
     const [novaMensagem, setNovaMensagem] = useState("");
 
+    // Estado para fóruns vindos do backend
+    const [foruns, setForuns] = useState([]);
+    const [salaAtual, setSalaAtual] = useState(null);
+
     useEffect(() => {
-        if(!usuario){
+        if (!usuario) {
             navigate("/");
         }
 
-        // Buscar Fóruns do Backend
         async function carregarForuns() {
             try {
                 const resposta = await fetch("http://localhost:3001/api/foruns");
                 const dados = await resposta.json();
                 setForuns(dados);
+
+                // Encontrar o fórum atual pelo id da URL
+                const forumSelecionado = dados.find(f => f.idForum === Number(idForum));
+                setSalaAtual(forumSelecionado);
             } catch {
                 console.error("Erro ao carregar fóruns...");
             }
         }
 
         carregarForuns();
-    },  [usuario, navigate]);
+    }, [usuario, navigate, idForum]);
 
-    const [participantes] = useState([
-        { id: 1, nome: "João", avatar: "https://i.pravatar.cc/40?u=joao" },
-        { id: 2, nome: "Maria", avatar: "https://i.pravatar.cc/40?u=maria" },
-        { id: 3, nome: "Lucas", avatar: "https://i.pravatar.cc/40?u=lucas" },
-        { id: 4, nome: "Ana", avatar: "https://i.pravatar.cc/40?u=ana" }
-    ]);
-
-    const [forum] = useState([
-        { id: 1, nome: "Games", avatar: "https://i.pravatar.cc/40?u=games" },
-        { id: 2, nome: "Esportes", avatar: "https://i.pravatar.cc/40?u=esportes" },
-        { id: 3, nome: "Noticias", avatar: "https://i.pravatar.cc/40?u=noticias" },
-    ]);
-
-    const salaAtual = forum.find(f => f.id === Number(idForum));
-
-    function foruns() {
-        navigate('/Dashboard')
+    function voltarDashboard() {
+        navigate('/Dashboard');
     }
 
     function logout() {
@@ -62,7 +53,7 @@ function Chat() {
             <div className="MenuPerfil">
                 <p>Perfil</p>
                 <p>Configurações</p>
-                <p onClick={foruns}>Foruns</p>
+                <p onClick={voltarDashboard}>Foruns</p>
                 <p onClick={logout}>Sair</p>
             </div>
         );
@@ -86,22 +77,12 @@ function Chat() {
     return (
         <div className='Chat-container'>
             <form className='Chat-form' onSubmit={(e) => e.preventDefault()}>
-                <div className="Chat-lateral">
-                    <h1 className='Chat-membros'>Participantes</h1>
-                    <ul className='Chat-lista'>
-                        {participantes.map(membro => (
-                            <li key={membro.id} className='Chat-participantes'>
-                                <img src={membro.avatar} alt={membro.nome} className="Chat-avatar-membro" />
-                                <p className='Chat-nome-membro'>{membro.nome}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
                 <h1 className='Chat-titulo'>Chat online</h1>
-                <h1 className='Chat-nome'>{salaAtual ? salaAtual.nome : "Sala não encontrada"}</h1>
+                <h1 className='Chat-nome'>
+                    {salaAtual ? salaAtual.nome : "Sala não encontrada"}
+                </h1>
 
-                {/* Aqui exibimos as mensagens */}
+                {/* Mensagens */}
                 <div className='Chat-mensagens'>
                     {mensagens.map(msg => (
                         <div key={msg.id} className='Chat-mensagem'>
@@ -138,14 +119,14 @@ function Chat() {
                 {MenuPerfil && <Menu />}
             </div>
 
+            {/* Lista lateral de fóruns */}
             <div className='Chat-foruns-lateral'>
                 <ul className='Chat-foruns-lista'>
-                    {forum.map(salas => (
-                        <li key={salas.id}
+                    {foruns.map(f => (
+                        <li key={f.idForum}
                             className='Chat-aba-foruns'
-                            onClick={() => navigate(`/Chat/${salas.id}`)}>
-                            <img src={salas.avatar} alt={salas.nome} className='Chat-avatar-forum' />
-                            <p className='Chat-nome-forum'>{salas.nome}</p>
+                            onClick={() => navigate(`/Chat/${f.idForum}`)}>
+                            <p className='Chat-nome-forum'>{f.nome}</p>
                         </li>
                     ))}
                 </ul>

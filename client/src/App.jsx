@@ -16,7 +16,7 @@ function App() {
       <Route path="/" element={<Home users={users} />} />
       <Route path="/Cadastro" element={<Cadastro users={users} setUsers={setUsers} />} />
       <Route path="/Dashboard" element={<Dashboard />} />
-      <Route path="/Chat" element={<Chat />} />
+      <Route path="/Chat/:idForum" element={<Chat />} />
       <Route path="/Foruns" element={<Foruns/>}/>
     </Routes>
   );
