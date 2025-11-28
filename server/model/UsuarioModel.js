@@ -25,6 +25,11 @@ class UsuarioModel {
         ]);
     }
 
+    static async atualizarTabela() {
+        const db = await conexao();
+        await db.run(`ALTER TABLE usuarios ADD COLUMN idForum INTEGER`);
+    }
+
     static async buscarLogin(nome, email, senha) {
         const db = await conexao();
         return db.get(`SELECT * FROM usuarios WHERE nome=? AND email=? AND senha=?`, [
@@ -32,6 +37,10 @@ class UsuarioModel {
             email,
             senha
         ]);
+    }
+
+    static async rodarQuery() {
+        const db = await conexao();
     }
 
 }

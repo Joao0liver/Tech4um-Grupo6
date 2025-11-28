@@ -28,20 +28,15 @@ function Dashboard() {
         carregarForuns();
     },  [usuario, navigate]);
 
-    async function criarForum() {
-        try {
-            const resposta = await fetch("http://localhost:3001/api/forum-cadastro", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nome, descricao })
-            });
-
-            const dados = await resposta.json();
-
-            alert(dados.mensagem);
-        } catch {
-            alert("Erro ao criar Fórum...");
-        }
+    async function inscreverForum(idForum) {
+        const resposta = await fetch("http://localhost:3001/api/entrar-forum", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idForum, idUser: usuario.idUser })
+        });
+        const dados = await resposta.json();
+        alert(dados.mensagem);
+        navigate(`/Chat/${idForum}`);
     }
 
     function logout() {
@@ -82,9 +77,10 @@ function Dashboard() {
             
             <div className='Card-container'>
                 {foruns.map(forum=>(
-                    <div key={ forum.idForum } className='Card' onClick={() => navigate(`/Chat/${forum.idForum}`)}>
+                    <div key={ forum.idForum } className='Card'>
                         <h3 className='Card-title'>{forum.nome}</h3>
                         <p>{forum.descricao}</p>
+                        <button type='button' className='Dash-botao3' onClick={() => inscreverForum(forum.idForum)}>Inscrever-se</button>
                     </div>
                 ))}
             </div>
