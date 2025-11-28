@@ -1,4 +1,5 @@
 import './style.css';
+import { socket } from "../../socket.js";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -8,7 +9,6 @@ function Chat() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     const [MenuPerfil, setMenuPerfil] = useState(false);
     const [mostrarParticipantes, setMostrarParticipantes] = useState(false);
-
 
     const [mensagens, setMensagens] = useState([]);
     const [novaMensagem, setNovaMensagem] = useState("");
@@ -21,6 +21,14 @@ function Chat() {
         if (!usuario) {
             navigate("/");
         }
+
+        // Entrar na sala do Fórum
+        socket.emit("entrarSala", idForum);
+
+        // Receber as mensagens
+        socket.on("mensagem", (msg) => {
+            setMensagens((prev) => [...prev, msg]);
+        });
 
         async function carregarForuns() {
             try {
@@ -37,6 +45,10 @@ function Chat() {
         }
 
         carregarForuns();
+
+        // Limpa o listener ao sair do socket
+        return () => socket.off("mensagem");
+
     }, [usuario, navigate, idForum]);
 
     function voltarDashboard() {
@@ -74,19 +86,15 @@ function Chat() {
         );
     }
 
-
-
     function enviarMensagem() {
         if (novaMensagem.trim() === "") return;
 
-        const mensagemObj = {
-            id: mensagens.length + 1,
+        socket.emit("mensagem", {
+            idForum,
             usuario: usuario.nome,
             avatar: usuario.avatar,
             texto: novaMensagem
-        };
-
-        setMensagens([...mensagens, mensagemObj]);
+        });
         setNovaMensagem("");
     }
 
@@ -105,8 +113,8 @@ function Chat() {
 
                 {/* Mensagens */}
                 <div className='Chat-mensagens'>
-                    {mensagens.map(msg => (
-                        <div key={msg.id} className='Chat-mensagem'>
+                    {mensagens.map((msg, i) => (
+                        <div key={i} className='Chat-mensagem'>
                             <img src={msg.avatar} alt={msg.usuario} className='Chat-avatar-mensagem' />
                             <div>
                                 <p className='Chat-usuario-mensagem'>{msg.usuario}</p>

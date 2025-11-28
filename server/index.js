@@ -31,9 +31,36 @@ app.delete('/api/sair-forum/:idForum', RegistroController.sairForum);
 app.get('/api/inscricoes', RegistroController.forunsIncritos);
 
 
-// Configurações de Server e Socket.io
+// Configurações de Server
 const server = http.createServer(app);
 const PORT = 3001
+
+// Configurações do Socket.io
 const io = require('socket.io')(server, { cors: { origin: 'http://localhost:5173' } }); // Cors indica que o Socket só recebe requisição do client React
+
+io.on('connection', (socket) => {
+  console.log('Novo usuário conectado:', socket.id);
+
+  // Entrar em uma sala de fórum
+  socket.on('entrarSala', (idForum) => {
+    socket.join(`forum_${idForum}`);
+    console.log(`Usuário entrou na sala forum_${idForum}`);
+  });
+
+  // Receber mensagem e enviar para todos na sala
+  socket.on('mensagem', (data) => {
+    const { idForum, usuario, avatar, texto } = data;
+    io.to(`forum_${idForum}`).emit('mensagem', {
+      usuario,
+      avatar,
+      texto,
+      hora: new Date().toLocaleTimeString()
+    });
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Usuário desconectado:', socket.id);
+  });
+});
 
 server.listen(PORT, () => console.log('Backend rodando em http://localhost:3001'))
