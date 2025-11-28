@@ -30,22 +30,6 @@ function Chat() {
             setMensagens((prev) => [...prev, msg]);
         });
 
-        async function carregarForuns() {
-            try {
-                const resposta = await fetch("http://localhost:3001/api/foruns");
-                const dados = await resposta.json();
-                setForuns(dados);
-
-                // Encontrar o fórum atual pelo id da URL
-                const forumSelecionado = dados.find(f => f.idForum === Number(idForum));
-                setSalaAtual(forumSelecionado);
-            } catch {
-                console.error("Erro ao carregar fóruns...");
-            }
-        }
-
-        carregarForuns();
-
         // Limpa o listener ao sair do socket
         return () => socket.off("mensagem");
 
