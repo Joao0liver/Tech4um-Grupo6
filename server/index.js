@@ -35,15 +35,30 @@ app.get('/api/inscricoes', RegistroController.forunsIncritos);
 const server = http.createServer(app);
 const PORT = 3001
 
-// Configurações do Socket.io
+// Configurações do Servidor Socket.io
 const io = require('socket.io')(server, { cors: { origin: 'http://localhost:5173' } }); // Cors indica que o Socket só recebe requisição do client React
+const usuariosPorSala = {};
 
 io.on('connection', (socket) => {
   console.log('Novo usuário conectado:', socket.id);
 
   // Entrar em uma sala de fórum
-  socket.on('entrarSala', (idForum) => {
-    socket.join(`forum_${idForum}`);
+  socket.on('entrarSala', ({ idForum, usuario }) => {
+    const sala = `forum_${idForum}`;
+    socket.join(sala);
+
+    if (!usuariosPorSala[sala]) {
+        usuariosPorSala[sala] = [];
+    }
+    usuariosPorSala[sala].push({
+        id: socket.id,
+        nome: usuario.nome,
+        avatar: usuario.avatar
+    });
+
+    // Envia uma lista atualizada dos participantes para todos na sala
+    io.to(sala).emit("listaParticipantes", usuariosPorSala[sala]);
+
     console.log(`Usuário entrou na sala forum_${idForum}`);
   });
 
@@ -58,7 +73,15 @@ io.on('connection', (socket) => {
     });
   });
 
+  // Caso o usuário se desconecte da sala
   socket.on('disconnect', () => {
+    for (const sala in usuariosPorSala) {
+        usuariosPorSala[sala] = usuariosPorSala[sala].filter(
+            (u) => u.id !== socket.id
+        );
+
+        io.to(sala).emit("listaParticipantes", usuariosPorSala[sala]);
+    }
     console.log('Usuário desconectado:', socket.id);
   });
 });

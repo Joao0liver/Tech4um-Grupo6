@@ -10,30 +10,40 @@ function Chat() {
     const [MenuPerfil, setMenuPerfil] = useState(false);
     const [mostrarParticipantes, setMostrarParticipantes] = useState(false);
 
-    const [mensagens, setMensagens] = useState([]);
-    const [novaMensagem, setNovaMensagem] = useState("");
-
-    // Estado para fóruns vindos do backend
     const [foruns, setForuns] = useState([]);
     const [salaAtual, setSalaAtual] = useState(null);
+    const [mensagens, setMensagens] = useState([]);
+    const [novaMensagem, setNovaMensagem] = useState("");
+    const [participantes, setParticipantes] = useState([]);
 
     useEffect(() => {
         if (!usuario) {
             navigate("/");
+            return;
         }
 
-        // Entrar na sala do Fórum
-        socket.emit("entrarSala", idForum);
+        // Entra na sala ao montar
+        if (socket.connected) {
+            socket.emit("entrarSala", { idForum, usuario });
+        }
 
-        // Receber as mensagens
+        // Listener das mensagens
         socket.on("mensagem", (msg) => {
             setMensagens((prev) => [...prev, msg]);
         });
 
-        // Limpa o listener ao sair do socket
-        return () => socket.off("mensagem");
+        // Listener dos participantes
+        socket.on("listaParticipantes", (lista) => {
+            setParticipantes(lista);
+        });
 
-    }, [usuario, navigate, idForum]);
+        // Limpa o listener ao sair do socket
+        return () => {
+            socket.off("mensagem");
+            socket.off("listaParticipantes");
+        };
+
+    }, [idForum]);
 
     function voltarDashboard() {
         navigate('/Dashboard');
@@ -55,6 +65,7 @@ function Chat() {
             </div>
         );
     }
+    
     function MenuParticipantes() {
         return (
             <div className="MenuMembros">
@@ -86,7 +97,17 @@ function Chat() {
         <div className='Chat-container'>
             <form className='Chat-form' onSubmit={(e) => e.preventDefault()}>
                 <div className="Chat-lateral">
-                    <h1 className='Chat-membros' onClick={() => setMostrarParticipantes(!mostrarParticipantes)}>Participantes</h1>
+                    <h1 className='Chat-membros'>Participantes</h1>
+                    <div className="MenuMembros">
+                        <ul className='Chat-lista'>
+                            {participantes.map((membro) => (
+                                <li key={membro.id} className='Chat-participantes' onClick={() => navigate(`/ChatPrivado/${membro.nome}`)}>
+                                    <img src={membro.avatar} alt={membro.nome} className="Chat-avatar-membro" />
+                                    <p className='Chat-nome-membro'>{membro.nome}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                     {mostrarParticipantes && <MenuParticipantes />}
                 </div>
 
