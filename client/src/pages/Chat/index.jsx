@@ -7,8 +7,9 @@ function Chat() {
     const navigate = useNavigate();
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     const [MenuPerfil, setMenuPerfil] = useState(false);
+    const [mostrarParticipantes, setMostrarParticipantes] = useState(false);
 
-    // Estado para mensagens
+
     const [mensagens, setMensagens] = useState([]);
     const [novaMensagem, setNovaMensagem] = useState("");
 
@@ -58,8 +59,23 @@ function Chat() {
             </div>
         );
     }
+    function MenuParticipantes() {
+        return (
+            <div className="MenuMembros">
+                <ul className='Chat-lista'>
+                    {participantes.map(membro => (
+                        <li key={membro.id} className='Chat-participantes' onClick={() => navigate(`/ChatPrivado/${membro.nome}`)}>
+                            <img src={membro.avatar} alt={membro.nome} className="Chat-avatar-membro" />
+                            <p className='Chat-nome-membro'>{membro.nome}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    }
 
-    // Função para enviar mensagem
+
+
     function enviarMensagem() {
         if (novaMensagem.trim() === "") return;
 
@@ -77,6 +93,11 @@ function Chat() {
     return (
         <div className='Chat-container'>
             <form className='Chat-form' onSubmit={(e) => e.preventDefault()}>
+                <div className="Chat-lateral">
+                    <h1 className='Chat-membros' onClick={() => setMostrarParticipantes(!mostrarParticipantes)}>Participantes</h1>
+                    {mostrarParticipantes && <MenuParticipantes />}
+                </div>
+
                 <h1 className='Chat-titulo'>Chat online</h1>
                 <h1 className='Chat-nome'>
                     {salaAtual ? salaAtual.nome : "Sala não encontrada"}
@@ -96,15 +117,24 @@ function Chat() {
                 </div>
 
                 <div className='Chat-input'>
-                    <input 
-                        type='text' 
-                        placeholder='Digite sua mensagem...' 
+                    <input
+
+                        type='text'
+                        placeholder='Digite sua mensagem...'
                         value={novaMensagem}
                         onChange={(e) => setNovaMensagem(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                e.preventDefault(); 
+                                enviarMensagem();
+                            }
+                        }}
+
+
                     />
-                    <button 
-                        className='Chat-enviar' 
-                        type="button" 
+                    <button
+                        className='Chat-enviar'
+                        type="button"
                         onClick={enviarMensagem}>
                         Enviar →
                     </button>
