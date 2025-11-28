@@ -23,9 +23,7 @@ function Chat() {
         }
 
         // Entra na sala ao montar
-        if (socket.connected) {
-            socket.emit("entrarSala", { idForum, usuario });
-        }
+        socket.emit("entrarSala", { idForum, usuario });
 
         // Listener das mensagens
         socket.on("mensagem", (msg) => {
