@@ -39,26 +39,8 @@ class UsuarioModel {
         ]);
     }
 
-    static async entrarForum(idForum, idUser) {
+    static async rodarQuery() {
         const db = await conexao();
-        await db.run(`UPDATE usuarios SET idForum=? WHERE idUser=?`, [
-            idForum,
-            idUser
-        ]);
-    }
-
-    static async sairForum(idUser) {
-        const db = await conexao();
-        await db.run(`UPDATE usuarios SET idForum=NULL WHERE idUser=?`, [
-            idUser
-        ]);
-    }
-
-    static async verificarForum(idUser) {
-        const db = await conexao();
-        await db.run(`SELECT idForum FROM usuarios WHERE idUser=?`, [
-            idUser
-        ]);
     }
 
 }

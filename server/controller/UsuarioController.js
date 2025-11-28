@@ -19,29 +19,6 @@ class UsuarioController {
         }
     }
 
-    static async inscrever(req, res) {
-        const { idForum, idUser } = req.body;
-        await UsuarioModel.entrarForum(idForum, idUser);
-        res.json({ mensagem: "Inscrito no Fórum com sucesso!" });
-    }
-
-    static async desinscrever(req, res) {
-        const { idUser } = req.body
-        await UsuarioModel.sairForum(idUser);
-        res.json({ mensagem: "Desinscreveu-se do Fórum com sucesso!" });
-    }
-
-    static async verificarForum(req, res) {
-        const { idUser } = req.body;
-        const forum = await UsuarioModel.verificarForum(idUser);
-
-        if (forum) {
-            res.json({ sucesso: true });
-        } else {
-            res.json({ sucesso: false });
-        }
-    }
-
 }
 
 module.exports = UsuarioController;
