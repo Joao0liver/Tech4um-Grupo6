@@ -2,6 +2,9 @@
 
 Bem-vindo ao repositório do projeto **Tech4um - Grupo 6**! Este projeto consiste em uma aplicação completa com frontend e backend, separados em pastas distintas dentro do repositório.
 
+
+> ⚠️ **Aviso:** Este projeto **ainda não está finalizado nem totalmente polido**. Algumas funcionalidades, fluxos e interfaces podem sofrer alterações.
+
 ## 🚀 Executando o projeto
 
 Para rodar o projeto corretamente, você deve utilizar a branch **`backend`**, pois é nela que se encontra a estrutura completa com cliente e servidor.
