@@ -1,16 +1,64 @@
-# React + Vite
+# Tech4um - Grupo 6
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bem-vindo ao repositório do projeto **Tech4um - Grupo 6**! Este projeto consiste em uma aplicação completa com frontend e backend, separados em pastas distintas dentro do repositório.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> ⚠️ **Aviso:** Este projeto **ainda não está finalizado nem totalmente polido**. Algumas funcionalidades, fluxos e interfaces podem sofrer alterações.
 
-## React Compiler
+## 🚀 Executando o projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Para rodar o projeto corretamente, você deve utilizar a branch **`backend`**, pois é nela que se encontra a estrutura completa com cliente e servidor.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📂 Estrutura do projeto
+
+```
+/Tech4um-Grupo6
+ ├── client   → Frontend (Vite + React)
+ └── server   → Backend (Node.js)
+```
+
+---
+
+## ▶️ Rodando o Frontend
+
+No terminal, execute:
+
+```bash
+cd client
+npm install vite --save-dev
+npm run dev
+```
+
+O frontend será iniciado pelo Vite.
+
+---
+
+## 🖥️ Rodando o Backend
+
+Em outro terminal, execute:
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+O backend será iniciado em modo de desenvolvimento.
+
+---
+
+## 📌 Observações
+- Certifique-se de estar na branch **backend** antes de rodar o projeto.
+- Frontend e backend devem ser executados em terminais separados.
+
+---
+
+## 📄 Licença
+Este projeto é de uso acadêmico e faz parte das atividades do Grupo 6 no Tech4um.
+
+---
+
+Se precisar atualizar algo ou adicionar seções extras, posso ajudar!
+
