@@ -56,9 +56,7 @@ O backend será iniciado em modo de desenvolvimento.
 ---
 
 ## 📄 Licença
-Este projeto é de uso acadêmico e faz parte das atividades do Grupo 6 no Tech4um.
+Este projeto é de uso acadêmico e faz parte das atividades do Grupo 6 no Tech4um para a DEV - Ninja Startup Job 2026.
 
 ---
-
-Se precisar atualizar algo ou adicionar seções extras, posso ajudar!
 
