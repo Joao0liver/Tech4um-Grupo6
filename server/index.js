@@ -17,6 +17,7 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 UsuarioModel.criarTabela();
 ForumModel.criarTabela();
 RegistroModel.criarTabela();
+UsuarioModel.deletarTabela();
 
 // Rotas da API
 app.post('/api/usuario-cadastro', UsuarioController.cadastrar);
