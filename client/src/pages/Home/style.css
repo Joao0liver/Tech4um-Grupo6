@@ -1,0 +1,68 @@
+.Home-container{
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+    padding-top: 100px;
+}
+.Home-titulo{
+    color: blue;
+    font-size: 18px;
+}
+.Home-texto{
+    color:gray;
+    font-size: 14px;
+}
+.Home-names{
+    color:gray;
+    font-size:10px;
+}
+.Home-emails{
+    color:gray;
+    font-size:10px;
+}
+.Home-senhas{
+    color:gray;
+    font-size:10px;
+}
+.Home-form{
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+    padding: 25px;
+    border-radius: 15px;
+    background-color: white;
+    max-width: 50%;
+    width: 400px;
+    margin-bottom:20px ;
+
+    & button{
+        border-radius: 30px;
+        background-color:rgb(12, 59, 212);
+        color: white;
+        height: 35px;
+        width: 100px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        align-self: flex-start;
+    }
+    & button:hover{
+        opacity: 0.8;
+    }
+    & input{
+        border: 1px solid #48456C;
+        color: black;
+        border-radius: 15px;
+        height: 40px;
+        font-size: 16px;
+        padding-left: 10px;
+        outline: none;
+        background-color:white;
+    }
+}
+.Home-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px; 
+    margin-top: 5px;
+}
