@@ -2,13 +2,6 @@ const conexao = require('../conexao.js');
 
 class UsuarioModel {
 
-    static async deletarTabela() {
-        const db = await conexao();
-        db.run(
-            `DELETE FROM usuarios`
-        );
-    }
-
     static async criarTabela() {
         const db = await conexao();
         db.run(`
