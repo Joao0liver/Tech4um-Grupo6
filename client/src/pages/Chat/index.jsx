@@ -1,4 +1,5 @@
 import './style.css';
+import { socket } from "../../socket.js";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -9,35 +10,38 @@ function Chat() {
     const [MenuPerfil, setMenuPerfil] = useState(false);
     const [mostrarParticipantes, setMostrarParticipantes] = useState(false);
 
-
-    const [mensagens, setMensagens] = useState([]);
-    const [novaMensagem, setNovaMensagem] = useState("");
-
-    // Estado para fóruns vindos do backend
     const [foruns, setForuns] = useState([]);
     const [salaAtual, setSalaAtual] = useState(null);
+    const [mensagens, setMensagens] = useState([]);
+    const [novaMensagem, setNovaMensagem] = useState("");
+    const [participantes, setParticipantes] = useState([]);
 
     useEffect(() => {
         if (!usuario) {
             navigate("/");
+            return;
         }
 
-        async function carregarForuns() {
-            try {
-                const resposta = await fetch("http://localhost:3001/api/foruns");
-                const dados = await resposta.json();
-                setForuns(dados);
+        // Entra na sala ao montar
+        socket.emit("entrarSala", { idForum, usuario });
 
-                // Encontrar o fórum atual pelo id da URL
-                const forumSelecionado = dados.find(f => f.idForum === Number(idForum));
-                setSalaAtual(forumSelecionado);
-            } catch {
-                console.error("Erro ao carregar fóruns...");
-            }
-        }
+        // Listener das mensagens
+        socket.on("mensagem", (msg) => {
+            setMensagens((prev) => [...prev, msg]);
+        });
 
-        carregarForuns();
-    }, [usuario, navigate, idForum]);
+        // Listener dos participantes
+        socket.on("listaParticipantes", (lista) => {
+            setParticipantes(lista);
+        });
+
+        // Limpa o listener ao sair do socket
+        return () => {
+            socket.off("mensagem");
+            socket.off("listaParticipantes");
+        };
+
+    }, [idForum]);
 
     function voltarDashboard() {
         navigate('/Dashboard');
@@ -59,6 +63,7 @@ function Chat() {
             </div>
         );
     }
+    
     function MenuParticipantes() {
         return (
             <div className="MenuMembros">
@@ -74,19 +79,15 @@ function Chat() {
         );
     }
 
-
-
     function enviarMensagem() {
         if (novaMensagem.trim() === "") return;
 
-        const mensagemObj = {
-            id: mensagens.length + 1,
+        socket.emit("mensagem", {
+            idForum,
             usuario: usuario.nome,
             avatar: usuario.avatar,
             texto: novaMensagem
-        };
-
-        setMensagens([...mensagens, mensagemObj]);
+        });
         setNovaMensagem("");
     }
 
@@ -94,7 +95,17 @@ function Chat() {
         <div className='Chat-container'>
             <form className='Chat-form' onSubmit={(e) => e.preventDefault()}>
                 <div className="Chat-lateral">
-                    <h1 className='Chat-membros' onClick={() => setMostrarParticipantes(!mostrarParticipantes)}>Participantes</h1>
+                    <h1 className='Chat-membros'>Participantes</h1>
+                    <div className="MenuMembros">
+                        <ul className='Chat-lista'>
+                            {participantes.map((membro) => (
+                                <li key={membro.id} className='Chat-participantes' onClick={() => navigate(`/ChatPrivado/${membro.nome}`)}>
+                                    <img src={membro.avatar} alt={membro.nome} className="Chat-avatar-membro" />
+                                    <p className='Chat-nome-membro'>{membro.nome}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                     {mostrarParticipantes && <MenuParticipantes />}
                 </div>
 
@@ -105,8 +116,8 @@ function Chat() {
 
                 {/* Mensagens */}
                 <div className='Chat-mensagens'>
-                    {mensagens.map(msg => (
-                        <div key={msg.id} className='Chat-mensagem'>
+                    {mensagens.map((msg, i) => (
+                        <div key={i} className='Chat-mensagem'>
                             <img src={msg.avatar} alt={msg.usuario} className='Chat-avatar-mensagem' />
                             <div>
                                 <p className='Chat-usuario-mensagem'>{msg.usuario}</p>
