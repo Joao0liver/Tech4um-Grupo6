@@ -11,13 +11,13 @@ const ForumModel = require('./model/ForumModel.js');
 const RegistroModel = require('./model/RegistroModel.js');
 const RegistroController = require('./controller/RegistroController.js');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use(cors({ origin: 'http://localhost:5173' }));
 
 UsuarioModel.criarTabela();
 ForumModel.criarTabela();
 RegistroModel.criarTabela();
-UsuarioModel.deletarTabela();
 
 // Rotas da API
 app.post('/api/usuario-cadastro', UsuarioController.cadastrar);
